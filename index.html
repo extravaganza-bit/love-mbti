@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연애 MBTI 테스트</title>
+  <!-- AdSense 승인 후 YOUR_ADSENSE_CLIENT_ID를 ca-pub-xxxxxxxxxxxxxxxx 값으로 교체하세요. -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_ADSENSE_CLIENT_ID" crossorigin="anonymous"></script>
+  <!-- 카카오 개발자 콘솔에서 JavaScript 키를 받은 뒤 script.js의 YOUR_KAKAO_JAVASCRIPT_KEY를 교체하세요. -->
+  <script defer src="https://t1.kakaocdn.net/kakao_js_sdk/2.7.5/kakao.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="ad-rail ad-rail-left" aria-label="왼쪽 광고">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="YOUR_ADSENSE_CLIENT_ID"
+      data-ad-slot="YOUR_LEFT_AD_SLOT"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <div class="ad-fallback">
+      <span>AD</span>
+      <strong>연애 고민 상담</strong>
+      <p>오늘의 마음을 가볍게 확인해보세요.</p>
+    </div>
+  </aside>
+
+  <aside class="ad-rail ad-rail-right" aria-label="오른쪽 광고">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="YOUR_ADSENSE_CLIENT_ID"
+      data-ad-slot="YOUR_RIGHT_AD_SLOT"
+      data-ad-format="auto"
+      data-full-width-responsive="true"></ins>
+    <div class="ad-fallback">
+      <span>AD</span>
+      <strong>데이트 코스 추천</strong>
+      <p>이번 주말 분위기 좋은 장소 찾기.</p>
+    </div>
+  </aside>
+
+  <main class="app">
+    <section class="hero screen active" id="start-screen" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Love Personality Quiz</p>
+        <h1 id="hero-title">나의 연애 MBTI는?</h1>
+        <p class="hero-copy">MBTI를 알고 있다면 오늘의 연애 운세를 먼저 확인하고, 12개의 질문으로 내 연애 유형도 찾아보세요.</p>
+
+        <form class="fortune-form" id="fortune-form">
+          <label for="mbti-input">오늘의 연애 운세 보기</label>
+          <div class="fortune-input-row">
+            <input id="mbti-input" type="text" maxlength="4" placeholder="예: ENFP" autocomplete="off" aria-describedby="fortune-error">
+            <button class="secondary-button" type="submit">운세 보기</button>
+          </div>
+          <p class="form-error" id="fortune-error" role="alert"></p>
+        </form>
+
+        <article class="fortune-card" id="start-fortune-card" hidden>
+          <p class="fortune-label" id="start-fortune-label">ENFP 오늘의 연애 운세</p>
+          <h2 class="fortune-title" id="start-fortune-title">설렘 가득 로맨티스트</h2>
+          <p class="fortune-summary" id="start-fortune-summary"></p>
+          <dl class="mini-result-list">
+            <div>
+              <dt>연애 강점</dt>
+              <dd id="start-strength-text"></dd>
+            </div>
+            <div>
+              <dt>주의할 점</dt>
+              <dd id="start-tip-text"></dd>
+            </div>
+          </dl>
+          <p class="fortune-subtitle">오늘의 연애 운세</p>
+          <div class="fortune-rating" id="start-fortune-rating" aria-label="오늘의 연애 운세 별점">
+            <span class="rating-stars" id="start-rating-stars" aria-hidden="true"></span>
+            <strong id="start-rating-score">4.5 / 5</strong>
+          </div>
+          <p class="fortune-text" id="start-fortune-text"></p>
+        </article>
+
+        <button class="primary-button" id="start-button" type="button">
+          테스트 시작
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+      <div class="peek-panel" aria-hidden="true">
+        <span>12 Questions</span>
+        <span>4 Letters</span>
+        <span>Love Fortune</span>
+      </div>
+    </section>
+
+    <section class="quiz screen" id="quiz-screen" aria-live="polite">
+      <header class="quiz-top">
+        <button class="icon-button" id="back-button" type="button" aria-label="이전 질문">←</button>
+        <div class="progress-wrap" aria-label="진행률">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span id="progress-text">1 / 12</span>
+        </div>
+      </header>
+
+      <article class="question-card">
+        <p class="question-tag" id="question-tag">데이트 시작 전</p>
+        <h2 id="question-title">질문이 들어갑니다</h2>
+        <div class="answers" id="answers"></div>
+      </article>
+    </section>
+
+    <section class="result screen" id="result-screen">
+      <div class="result-layout">
+        <div class="result-visual" aria-hidden="true"></div>
+        <article class="result-card">
+          <p class="eyebrow">Your Love Type</p>
+          <h2 id="result-code">ENFP</h2>
+          <h3 id="result-title">햇살 리액션러</h3>
+          <div class="type-image" id="result-type-image" aria-label="MBTI 유형 이미지">
+            <span id="result-image-symbol" aria-hidden="true">LO</span>
+            <strong id="result-image-title">햇살 리액션러</strong>
+            <small id="result-image-caption">따뜻한 설렘을 만드는 타입</small>
+          </div>
+          <p id="result-description"></p>
+          <dl class="result-list">
+            <div>
+              <dt>연애 강점</dt>
+              <dd id="result-strength"></dd>
+            </div>
+            <div>
+              <dt>주의할 점</dt>
+              <dd id="result-tip"></dd>
+            </div>
+          </dl>
+
+          <article class="fortune-card result-fortune-card">
+            <p class="fortune-label" id="result-fortune-label">ENFP 오늘의 연애 운세</p>
+            <div class="fortune-rating" id="result-fortune-rating" aria-label="오늘의 연애 운세 별점">
+              <span class="rating-stars" id="result-rating-stars" aria-hidden="true"></span>
+              <strong id="result-rating-score">4.5 / 5</strong>
+            </div>
+            <p class="fortune-text" id="result-fortune-text"></p>
+          </article>
+
+          <div class="button-row">
+            <button class="primary-button" id="retry-button" type="button">다시 하기</button>
+            <button class="secondary-button" id="copy-button" type="button">결과 복사</button>
+          </div>
+
+          <article class="share-scene" id="share-scene" hidden>
+            <p class="fortune-label">공유용 결과 장면</p>
+            <h3 id="share-title">ENFP 설렘 가득 로맨티스트</h3>
+            <p id="share-summary"></p>
+            <div class="share-buttons" aria-label="공유 버튼">
+              <button class="share-button kakao" id="kakao-share-button" type="button">카카오톡</button>
+              <button class="share-button x-twitter" id="x-share-button" type="button">X/Twitter</button>
+              <button class="share-button facebook" id="facebook-share-button" type="button">Facebook</button>
+            </div>
+            <button class="primary-button" id="share-test-button" type="button">테스트 해보기</button>
+          </article>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
